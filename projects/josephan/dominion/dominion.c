@@ -1023,7 +1023,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     return -1;
 }
 
-int baronCardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus, int currentPlayer) {
+int baronCardEffect(int card, int choice1, struct gameState *state, int currentPlayer) {
     state->numBuys++; //Increase buys by 1!
     if (choice1 > 0) {              //Boolean true or going to discard an estate
         int p = 1;                  //Iterator for hand! //*BUG* 0 to 1
