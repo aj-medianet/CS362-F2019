@@ -1101,7 +1101,7 @@ void discardHandDrawFour(struct gameState *state,  int handPos, int player) {
     }
 }
 
-int minionCardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus, int currentPlayer){
+int minionCardEffect(int choice1, int choice2, struct gameState *state, int handPos, int currentPlayer){
     //+1 action
     state->numActions++;
 
@@ -1131,7 +1131,7 @@ int minionCardEffect(int card, int choice1, int choice2, int choice3, struct gam
     return 0;
 }
 
-int ambassadorCardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus, int currentPlayer) {
+int ambassadorCardEffect(int choice1, int choice2, struct gameState *state, int handPos, int *bonus, int currentPlayer) {
     int j = 0; //used to check if player has enough cards to discard
 
     if (choice2 > 2 || choice2 < 0 || choice1 == handPos)
@@ -1185,7 +1185,7 @@ int ambassadorCardEffect(int card, int choice1, int choice2, int choice3, struct
     return 0;
 }
 
-int tributeCardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus, int currentPlayer, int nextPlayer, int* tributeRevealedCards) {
+int tributeCardEffect(struct gameState *state,int currentPlayer, int nextPlayer, int* tributeRevealedCards) {
     if ((state->discardCount[nextPlayer] + state->deckCount[nextPlayer]) < 1) //*BUG* <= to <
     {
         if (state->deckCount[nextPlayer] > 0)
@@ -1258,14 +1258,14 @@ int tributeCardEffect(int card, int choice1, int choice2, int choice3, struct ga
     return 0;
 }
 
-int mineCardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus, int currentPlayer) {
+int mineCardEffect(int choice1, int choice2, struct gameState *state, int handPos, int currentPlayer) {
     int j = state->hand[currentPlayer][choice1]; //store card we will trash
 
     if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold || choice2 > treasure_map || choice2 < curse)
     {
         return -1;
     }
-
+    
     if ((getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2))
     {
         return -1;
