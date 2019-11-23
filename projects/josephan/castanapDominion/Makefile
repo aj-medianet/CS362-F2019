@@ -65,7 +65,7 @@ unittestresults: unittest1 unittest2 unittest3 unittest4 unittest5
 	./unittest4 >> unittestresults.out
 	./unittest5 >> unittestresults.out
 	gcov -b -f dominion.c >> unittestresults.out
-	cat dominion.c.gcov >> unittestresults.out
+	#cat dominion.c.gcov >> unittestresults.out
 
 
 player: player.c interface.o

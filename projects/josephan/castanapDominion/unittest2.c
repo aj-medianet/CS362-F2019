@@ -2,7 +2,7 @@
  * author Andrew Joseph
  * 11/3/19
  * unittest2.c
- * unit test for minionCardEffect()
+ * unit test for minionCard()
  */
 
 #include "dominion.h"
@@ -48,7 +48,7 @@ int main() {
     
     //printf ("TESTING updateCoins():\n");
     printf("\n\n**********************************\n");
-    printf("*** Testing minionCardEffect() ***\n");
+    printf("*** Testing minionCard() ***\n");
     printf("**********************************\n");
     
     // setup the game state
@@ -93,7 +93,7 @@ int main() {
     
     
     // call the function we're unit testing
-    minionCardEffect(choice1, choice2, &G, handPos, player);
+    minionCard(choice1, choice2, &G, handPos);
     
     printf("\n*** Check numActions increases by 1 from %d to %d ***\n", beforeNumActions, beforeNumActions + 1);
     if (beforeNumActions + 1 == G.numActions) {
@@ -154,7 +154,7 @@ int main() {
     beforeNumCoins = G.coins;
     
     // call the function we're unit testing
-    minionCardEffect(choice1, choice2, &G, handPos, player);
+    minionCard(choice1, choice2, &G, handPos);
     
     printf("\n*** Check numActions increases by 1 from %d to %d ***\n", beforeNumActions, beforeNumActions + 1);
     if (beforeNumActions + 1 == G.numActions) {
@@ -217,7 +217,7 @@ int main() {
     beforeNumCoins = G.coins;
     
     // call the function we're unit testing
-    minionCardEffect(choice1, choice2, &G, handPos, player);
+    minionCard(choice1, choice2, &G, handPos);
     
     printf("\n*** Check numActions increases by 1 from %d to %d ***\n", beforeNumActions, beforeNumActions + 1);
     if (beforeNumActions + 1 == G.numActions) {
@@ -278,7 +278,7 @@ int main() {
     }
     
     // call the function we're unit testing
-    minionCardEffect(choice1, choice2, &G, handPos, player);
+    minionCard(choice1, choice2, &G, handPos);
     
     printf("\n*** Check numActions increases by 1 from %d to %d ***\n", beforeNumActions, beforeNumActions + 1);
     if (beforeNumActions + 1 == G.numActions) {
@@ -314,7 +314,7 @@ int main() {
     
     
     
-    printf("\n\nEnd of minionCardEffect() tests\n\n");
+    printf("\n\nEnd of minionCard() tests\n\n");
     
     return 0;
 }

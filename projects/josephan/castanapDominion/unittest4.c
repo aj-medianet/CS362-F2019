@@ -2,7 +2,7 @@
  * author Andrew Joseph
  * 11/3/19
  * unittest4.c
- * unit test for tributeCardEffect()
+ * unit test for tributeCard()
  */
 
 #include "dominion.h"
@@ -53,7 +53,7 @@ int main() {
     
     //printf ("TESTING updateCoins():\n");
     printf("\n\n**********************************\n");
-    printf("*** Testing tributeCardEffect() ***\n");
+    printf("*** Testing tributeCard() ***\n");
     printf("***********************************\n");
     
     // setup the game state
@@ -70,7 +70,7 @@ int main() {
     
     int beforeNumCoins = G.coins; // get num of actions for before call count
     
-    tributeCardEffect(&G, player1, player2, tributeRevealedCards);
+    tributeCard(&G);
     
     
     printf("*** Check number of coins. Should go from %d to %d \n", beforeNumCoins, beforeNumCoins+2);
@@ -91,7 +91,7 @@ int main() {
     int beforeNumActions = G.numActions;
     int tributeRevealedCards1[2] = {-1, -1};
     
-    tributeCardEffect(&G, player1, player2, tributeRevealedCards1);
+    tributeCard(&G);
     
     printf("*** Check number of actions. Should go from %d to %d \n", beforeNumActions, beforeNumActions+2);
     if (beforeNumActions + 2 == G.numActions) {
@@ -112,7 +112,7 @@ int main() {
     int beforeNumCards = G.handCount[player1];
     int tributeRevealedCards2[2] = {-1, -1};
     
-    tributeCardEffect(&G, player1, player2, tributeRevealedCards2);
+    tributeCard(&G);
     
     printf("*** Check number of cards. Should go from %d to %d \n", beforeNumCards, beforeNumCards+2);
     if (beforeNumCards + 2 == G.handCount[player1]) {
@@ -126,7 +126,7 @@ int main() {
     
     
     
-    printf("\n\nEnd of tributeCardEffect() tests\n\n");
+    printf("\n\nEnd of tributeCard() tests\n\n");
     
     return 0;
 }

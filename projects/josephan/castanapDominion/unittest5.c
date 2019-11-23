@@ -2,7 +2,7 @@
  * author Andrew Joseph
  * 11/3/19
  * unittest5.c
- * unit test for mineCardEffect()
+ * unit test for mineCard()
  */
 
 #include "dominion.h"
@@ -53,7 +53,7 @@ int main() {
     
     //printf ("TESTING updateCoins():\n");
     printf("\n\n******************************\n");
-    printf("*** Testing mineCardEffect() ***\n");
+    printf("*** Testing mineCard() ***\n");
     printf("********************************\n");
     
     
@@ -90,7 +90,7 @@ int main() {
         }
     }
     
-    mceReturnVal = mineCardEffect(choice1, choice2, &G, handPos, player1);
+    mceReturnVal = mineCard(choice1, choice2, &G, handPos);
     
     
     printf("*** Positive Testing, func should return 0 ***\n");
@@ -158,7 +158,7 @@ int main() {
         }
     }
     
-    mceReturnVal = mineCardEffect(choice1, choice2, &G, handPos, player1);
+    mceReturnVal = mineCard(choice1, choice2, &G, handPos);
     
     
     printf("*** Positive Testing, func should return 0 ***\n");
@@ -213,7 +213,7 @@ int main() {
     memcpy(G.hand[player2], coppers, sizeof(int) * 5); // set all p2's cards to coppers
     
     
-    mceReturnVal = mineCardEffect(choice1, choice2, &G, handPos, player1);
+    mceReturnVal = mineCard(choice1, choice2, &G, handPos);
     
     
     printf("*** Negative Testing, func should return -1 ***\n");
@@ -245,7 +245,7 @@ int main() {
 
     
     
-    printf("\n\nEnd of mineCardEffect() tests\n\n");
+    printf("\n\nEnd of mineCard() tests\n\n");
     
     return 0;
 }

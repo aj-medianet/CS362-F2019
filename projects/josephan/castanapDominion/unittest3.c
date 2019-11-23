@@ -2,7 +2,7 @@
  * author Andrew Joseph
  * 11/3/19
  * unittest3.c
- * unit test for ambassadorCardEffect()
+ * unit test for ambassadorCard()
  */
 
 #include "dominion.h"
@@ -48,7 +48,7 @@ int main() {
     int aceReturnValue;
     
     printf("\n\n**********************************\n");
-    printf("*** Testing ambassadorCardEffect() ***\n");
+    printf("*** Testing ambassadorCard() ***\n");
     printf("**********************************\n");
     
     // setup the game state
@@ -84,7 +84,7 @@ int main() {
     choice2 = 3;
     
     // call the function we're unit testing
-    aceReturnValue = ambassadorCardEffect(choice1, choice2, &G, handPos, player);
+    aceReturnValue = ambassadorCard(choice1, choice2, &G, handPos);
     
     printf("*** Testing choice2 > 2 ***\n");
     if (aceReturnValue == -1) {
@@ -94,7 +94,7 @@ int main() {
     }
     
     choice2 = -1;
-    aceReturnValue = ambassadorCardEffect(choice1, choice2, &G, handPos, player);
+    aceReturnValue = ambassadorCard(choice1, choice2, &G, handPos);
 
     printf("*** Testing choice2 < 0 ***\n");
     if (aceReturnValue == -1) {
@@ -112,7 +112,7 @@ int main() {
     choice1 = 1;
     choice2 = 1;
     
-    aceReturnValue = ambassadorCardEffect(choice1, choice2, &G, handPos, player);
+    aceReturnValue = ambassadorCard(choice1, choice2, &G, handPos);
     printf("*** return val should be -1 ***\n");
     if (aceReturnValue == -1) {
         printf("Test Passed, return value: %d\n", aceReturnValue);
@@ -138,7 +138,7 @@ int main() {
     memcpy(G.hand[player], minions, sizeof(int) * 5); // set all p1's cards to minions
     memcpy(G.hand[1], coppers, sizeof(int) * 5); // set all p2's cards to coppers
     
-    aceReturnValue = ambassadorCardEffect(choice1, choice2, &G, handPos, player);
+    aceReturnValue = ambassadorCard(choice1, choice2, &G, handPos);
     printf("*** return val should be -1 ***\n");
     if (aceReturnValue == -1) {
         printf("Test Passed, return value: %d\n", aceReturnValue);
@@ -186,7 +186,7 @@ int main() {
     // get before hand count to check discarding
     int beforeHandCount = G.handCount[player];
     
-    aceReturnValue = ambassadorCardEffect(choice1, choice2, &G, handPos, player);
+    aceReturnValue = ambassadorCard(choice1, choice2, &G, handPos);
     
     printf("*** Supply count should increase from %d to %d ***\n", G.supplyCount[G.hand[player][choice1]], G.supplyCount[G.hand[player][choice1]] + choice2 );
     if ( G.supplyCount[G.hand[player][choice1]] ==  G.supplyCount[G.hand[player][choice1]] + choice2) {
@@ -239,10 +239,10 @@ int main() {
         printf("%d\n", G.hand[1][i]);
     }
     
-    aceReturnValue = ambassadorCardEffect(choice1, choice2, &G, handPos, player);
+    aceReturnValue = ambassadorCard(choice1, choice2, &G, handPos);
  
     
-    printf("\n\nEnd of ambassadorCardEffect() tests\n\n");
+    printf("\n\nEnd of ambassadorCard() tests\n\n");
     
     return 0;
 }
