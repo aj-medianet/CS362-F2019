@@ -65,7 +65,7 @@ int main() {
     int handPos = 0;
     
     printf("\n\n***************************************\n");
-    printf("*** Random Testing minionCardEffect() ***\n");
+    printf("*** Random Testing minionCard() ***\n");
     printf("*****************************************\n");
     
     // how many times we want to run the tests
@@ -110,7 +110,7 @@ int main() {
                 int afterNumCoins;
                 
                 // call the function we're unit testing
-                minionCardEffect(choice1, choice2, &G, handPos, player1);
+                minionCard(choice1, choice2, &G, handPos);
                 
                 printf("\n*** Check numActions increases by 1 from %d to %d ***\n", beforeNumActions, beforeNumActions + 1);
                 if (beforeNumActions + 1 == G.numActions) {
@@ -164,7 +164,7 @@ int main() {
         }
     }
     
-    printf("\n\nEnd of random test for minionCardEffect()\n\n");
+    printf("\n\nEnd of random test for minionCard()\n\n");
     
     return 0;
 }

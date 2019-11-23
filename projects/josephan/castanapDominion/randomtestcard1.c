@@ -64,7 +64,7 @@ int main() {
     }
     
     printf("******************************************\n");
-    printf("*** Random Testing baronCardEffect() ***\n");
+    printf("*** Random Testing baronCard() ***\n");
     printf("****************************************\n");
     
     
@@ -103,7 +103,7 @@ int main() {
         }
         
         // call the function we're unit testing
-        baronCardEffect(k[0], choice1, &G, player);
+        baronCard(choice1, &G);
         
         printf("\n*** Testing numBuys increases from %d to %d. ***\n", beforeNumBuys, beforeNumBuys + 1);
         if (assertAequalsB(G.numBuys, beforeNumBuys + 1)) {
@@ -144,7 +144,7 @@ int main() {
         printf("\n*** Check prov & estate supply of 0 to check game over if statement, should return 1 ***\n");
         G.supplyCount[estate] = 1;
         G.supplyCount[province] = 0;
-        int gameOver = baronCardEffect(k[0], choice1, &G, player);
+        int gameOver = baronCard(choice1, &G);
         
         if (gameOver == 1) {
             printf("Test Passed. Game over results: %d\n", gameOver);
@@ -183,7 +183,7 @@ int main() {
         }
         
         // call the function we're unit testing
-        baronCardEffect(k2[0], choice1, &G, player);
+        baronCard(choice1, &G);
         
         printf("\n*** Testing numBuys increases from %d to %d. ***\n", beforeNumBuys, beforeNumBuys + 1);
         if (assertAequalsB(G.numBuys, beforeNumBuys + 1)) {
@@ -247,7 +247,7 @@ int main() {
             }
         }
         
-        baronCardEffect(k3[0], choice1, &G, player);
+        baronCard(choice1, &G);
         
         printf("\n*** Testing numBuys increases from %d to %d. ***\n", beforeNumBuys, beforeNumBuys + 1);
         if (assertAequalsB(G.numBuys, beforeNumBuys + 1)) {
@@ -299,7 +299,7 @@ int main() {
         printf("\n*** Check prov & estate supply of 0 to check game over if statement, should return 1 ***\n");
         G.supplyCount[estate] = 0;
         G.supplyCount[province] = 0;
-        gameOver = baronCardEffect(k[0], choice1, &G, player);
+        gameOver = baronCard(choice1, &G);
         
         if (gameOver == 1) {
             printf("Test Passed. Game over results: %d\n", gameOver);
@@ -318,7 +318,7 @@ int main() {
 
     
     
-    printf("\n\nEnd of baronCardEffect() tests\n\n");
+    printf("\n\nEnd of baronCard() tests\n\n");
     
     return 0;
 }

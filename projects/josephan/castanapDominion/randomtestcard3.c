@@ -75,7 +75,7 @@ int main() {
     
     
     printf("\n\n***************************************\n");
-    printf("*** Random Testing tributeCardEffect() ***\n");
+    printf("*** Random Testing tributeCard() ***\n");
     printf("*****************************************\n");
     
     // how many times we want to run the tests
@@ -172,7 +172,7 @@ int main() {
             
             printf("\n\n Tribute Call\n\n");
             
-            tributeCardEffect(&G, player1, player2, tributeRevealedCards);
+            tributeCard(&G);
             
             printf("After num coins: %d\n", G.coins);
             printf("After num actions: %d\n", G.numActions);
@@ -234,7 +234,7 @@ int main() {
         }
     }
     
-    printf("\n\nEnd of random test for tributeCardEffect()\n\n");
+    printf("\n\nEnd of random test for tributeCard()\n\n");
     
     return 0;
 }
