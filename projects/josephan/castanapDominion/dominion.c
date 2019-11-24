@@ -775,7 +775,7 @@ int getCost(int cardNumber)
 			while(card_not_discarded) {
 			
 				// If estate card found	
-				if (state->hand[currentPlayer][p] = estate) {	// Bug # 1, should be ==
+				if (state->hand[currentPlayer][p] == estate) {	// Bug 1 fixed! changed = to ==
 				
 					state->coins += 4;//Add 4 coins to the amount of coins
 				
@@ -785,7 +785,7 @@ int getCost(int cardNumber)
 				   	
 					// Get next card and each proceeding card to fill in gap of discarded card.
 					for (; p < state->handCount[currentPlayer]; p++) {
-						state->hand[currentPlayer][p] = state->hand[currentPlayer][p]; // Bug # 2, should be p+1
+						state->hand[currentPlayer][p] = state->hand[currentPlayer][p+1]; // Bug #2 fixed. p -> p+1
 				    	}
 				    	
 					// Mark last spot in hand as -1; As there is one less card. And then decrement handCount.
