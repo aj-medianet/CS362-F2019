@@ -72,6 +72,7 @@ int main() {
 	testG.hand[currentPlayer][choice1] = adventurer;	// Make card at choice1 == adventurer
 	testG.hand[currentPlayer][choice1+1] = adventurer;	// Make next two cards == adventurer
 	testG.hand[currentPlayer][choice1+2] = adventurer;
+	testG.hand[currentPlayer][choice1+3] = baron;
 	numCardsOld = numHandCards(&testG);
 
 	aTest = cardEffect(ambassador, choice1, choice2, choice3, &testG, handPos, &bonus);
@@ -79,9 +80,9 @@ int main() {
 	numCardsNew = numHandCards(&testG);
 
 	printf("num cards before function call:%d\n", numCardsOld);
-	printf("num cards after function call:%d - 2\n", numCardsOld);
+	printf("num cards after function call:%d - 3\n", numCardsOld);
 	printf("actual num cards = %d\n", numCardsNew);
-	printf("assert = %d\n\n", myAssert(numCardsOld - 2, numCardsNew));
+	printf("assert = %d\n\n", myAssert(numCardsOld - 3, numCardsNew));
 
 	// ----------- TESTS FINISHED. --------------
 	printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTCARD);
