@@ -73,7 +73,7 @@ int main() {
     
     
     printf("\n\n*********************************************\n");
-    printf("*** Fuzz Unit Testing tributeCardEffect() ***\n");
+    printf("*** Fuzz Unit Testing tribute switch case ***\n");
     printf("*********************************************\n");
     
     // how many times we want to run the tests
@@ -258,7 +258,7 @@ int main() {
     
     
     
-    printf("\n\nEnd of fuzzed unit test for tributeCardEffect()\n\n");
+    printf("\n\nEnd of fuzzed unit test for tribute switch case\n\n");
 
 
     
