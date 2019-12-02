@@ -241,7 +241,7 @@ int playCard(int handPos, int choice1, int choice2, int choice3, struct gameStat
         return -1;
     }
 
-    //check if player has enough actions
+   //check if player has enough actions
     if ( state->numActions < 1 )
     {
         return -1;
@@ -267,7 +267,7 @@ int playCard(int handPos, int choice1, int choice2, int choice3, struct gameStat
 
     //update coins (Treasure cards may be added with card draws)
     updateCoins(state->whoseTurn, state, coin_bonus);
-
+    
     return 0;
 }
 
@@ -895,7 +895,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             int card_not_discarded = 1;//Flag for discard set!
             while(card_not_discarded) {
                 if (state->hand[currentPlayer][p] == estate) { //Found an estate card!
-                    state->coins += 4;//Add 4 coins to the amount of coins
+                    //state->coins += 4;//Add 4 coins to the amount of coins
+                    *bonus += 4; // Bug fix Unit test 8
                     state->discard[currentPlayer][state->discardCount[currentPlayer]] = state->hand[currentPlayer][p];
                     state->discardCount[currentPlayer]++;
                     for (; p < state->handCount[currentPlayer]; p++) {
@@ -1077,8 +1078,14 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
                 drawCard(currentPlayer, state);
                 drawCard(currentPlayer, state);
             }
-            else { //Action Card
-                state->numActions = state->numActions + 2;
+            // Bug Unit test 9 fix
+            else if (tributeRevealedCards[i] >= adventurer && tributeRevealedCards[i] <= treasure_map){ //Action Card
+                state->numActions = state->numActions + 2; 
+            }
+            else{
+                if(DEBUG){
+                    printf("Second card is a duplicate card\n");
+                }
             }
         }
 
@@ -1099,7 +1106,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
         for (i = 0; i < state->handCount[currentPlayer]; i++)
         {
-            if (i != handPos && i == state->hand[currentPlayer][choice1] && i != choice1)
+            if (i != handPos && state->hand[currentPlayer][i] == state->hand[currentPlayer][choice1] && i != choice1)
             {
                 j++;
             }
