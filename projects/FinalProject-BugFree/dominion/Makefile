@@ -21,6 +21,15 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
+unittest5: unittest5.c dominion.o rngs.o
+	gcc -o unittest5 -g  unittest5.c dominion.o rngs.o $(CFLAGS)
+
+unittest6: unittest6.c dominion.o rngs.o
+	gcc -o unittest6 -g  unittest6.c dominion.o rngs.o $(CFLAGS)
+
+unittest7: unittest7.c dominion.o rngs.o
+	gcc -o unittest7 -g  unittest7.c dominion.o rngs.o $(CFLAGS)
+
 unittest8: unittest8.c dominion.o rngs.o
 	gcc -o unittest8 -g  unittest8.c dominion.o rngs.o $(CFLAGS)
 
@@ -30,10 +39,20 @@ unittest9: unittest9.c dominion.o rngs.o
 unittest10: unittest10.c dominion.o rngs.o
 	gcc -o unittest10 -g  unittest10.c dominion.o rngs.o $(CFLAGS)
 
-unittestresults: unittest8 unittest9 unittest10
+unittestresults: unittest5 unittest6 unittest7 unittest8 unittest9 unittest10
+	echo "Bugs Fixed Unit Tests:" > unittestresults.out
+
+	./unittest5 >> unittestresults.out
+	./unittest6 >> unittestresults.out
+	./unittest7 >> unittestresults.out
+
 	./unittest8 >> unittestresults.out
 	./unittest9 >> unittestresults.out
 	./unittest10 >> unittestresults.out
+
+	echo "*** gcov results:" >> unittestresults.out
+	echo >> unittestresults.out
+
 	gcov -b -f dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
 
