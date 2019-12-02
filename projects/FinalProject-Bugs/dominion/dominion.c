@@ -103,9 +103,9 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
     state->supplyCount[gold] = 30;
 
     //set number of Kingdom cards
-    for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
+    for (i = adventurer; i <= treasure_map; i++)           //loop all cards
     {
-        for (j = 0; j < 10; j++)           		//loop chosen cards
+        for (j = 0; j < 10; j++)                   //loop chosen cards
         {
             if (kingdomCards[j] == i)
             {
@@ -169,9 +169,9 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
         state->discardCount[i] = 0;
         //draw 5 cards
         // for (j = 0; j < 5; j++)
-        //	{
-        //	  drawCard(i, state);
-        //	}
+        //    {
+        //      drawCard(i, state);
+        //    }
     }
 
     //set embargo tokens to 0 for all supply piles
@@ -233,7 +233,7 @@ int shuffle(int player, struct gameState *state) {
 int playCard(int handPos, int choice1, int choice2, int choice3, struct gameState *state)
 {
     int card;
-    int coin_bonus = 0; 		//tracks coins gain from actions
+    int coin_bonus = 0;         //tracks coins gain from actions
 
     //check if it is the right phase
     if (state->phase != 0)
@@ -761,6 +761,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         //Update Coins for Buy
         updateCoins(currentPlayer, state, 5);
         x = 1;//Condition to loop on
+
+        // used for testing infinite loop
+        int count = 0;
+
         while( x == 1) {//Buy one card
             if (supplyCount(choice1, state) <= 0) {
                 if (DEBUG)
@@ -790,6 +794,12 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
                     printf("Deck Count: %d\n", state->handCount[currentPlayer] + state->deckCount[currentPlayer] + state->discardCount[currentPlayer]);
                 }
 
+            }
+
+            // used to break out of infinite loop
+            count++;
+            if (count == 50) {
+                return 1; // return an error
             }
         }
 
@@ -959,11 +969,11 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         //discard card from hand
         discardCard(handPos, currentPlayer, state, 0);
 
-		if (choice1)
+        if (choice1)
         {
             state->coins = state->coins + 2;
         }
-        else if (choice2)		//discard hand, redraw 4, other players with 5+ cards discard hand and draw 4
+        else if (choice2)        //discard hand, redraw 4, other players with 5+ cards discard hand and draw 4
         {
             //discard hand
             while(numHandCards(state) > 0)
@@ -1085,7 +1095,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         return 0;
 
     case ambassador:
-        j = 0;		//used to check if player has enough cards to discard
+        j = 0;        //used to check if player has enough cards to discard
 
         if (choice2 > 2 || choice2 < 0)
         {
@@ -1278,7 +1288,7 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
     state->hand[currentPlayer][handPos] = -1;
 
     //remove card from player's hand
-    if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+    if ( handPos == (state->handCount[currentPlayer] - 1) )     //last card in hand array is played
     {
         //reduce number of cards in hand
         state->handCount[currentPlayer]--;
