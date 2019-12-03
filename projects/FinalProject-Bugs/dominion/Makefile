@@ -21,6 +21,18 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
+unittest1: unittest1.c compare.h dominion.o rngs.o
+	gcc -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
+
+unittest2: unittest2.c compare.h dominion.o rngs.o
+	gcc -o unittest2 -g  unittest2.c dominion.o rngs.o $(CFLAGS)
+
+unittest3: unittest3.c compare.h dominion.o rngs.o
+	gcc -o unittest3 -g  unittest3.c dominion.o rngs.o $(CFLAGS)
+
+unittest4: unittest4.c compare.h dominion.o rngs.o
+	gcc -o unittest4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
+
 unittest5: unittest5.c dominion.o rngs.o
 	gcc -o unittest5 -g  unittest5.c dominion.o rngs.o $(CFLAGS)
 
@@ -39,10 +51,15 @@ unittest9: unittest9.c dominion.o rngs.o
 unittest10: unittest10.c dominion.o rngs.o
 	gcc -o unittest10 -g  unittest10.c dominion.o rngs.o $(CFLAGS)
 
-unittestresults: unittest5 unittest6 unittest7 unittest8 unittest9 unittest10
+unittestresults: unittest1 unittest2 unittest3 unittest4 unittest5 unittest6 unittest7 unittest8 unittest9 unittest10
 	echo "Unit Test Results:" > unittestresults.out
 
-	./unittest5 &> unittestresults.out
+	./unittest1 >> unittestresults.out
+	./unittest2 >> unittestresults.out
+	./unittest3 >> unittestresults.out
+	./unittest4 >> unittestresults.out
+
+	./unittest5 >> unittestresults.out
 	./unittest6 >> unittestresults.out
 	./unittest7 >> unittestresults.out
 
