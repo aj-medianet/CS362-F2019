@@ -40,7 +40,7 @@ int main() {
     int currentPlayer = 0;
 	int numCardsOld = 0, numCardsNew = 0;
 	int aTest = 0;
-	struct gameState G, testG;
+	struct gameState G;
 	
 	int k[10] = { adventurer, embargo, village, minion, mine, 
 				ambassador, cutpurse, tribute, smithy, council_room};
@@ -64,20 +64,20 @@ int main() {
 	printf("TEST 10: Ambassador card does not discard copies of revealed cards from player's hand.\n");
 
 	// copy the game state to a test case
-	memcpy(&testG, &G, sizeof(struct gameState));
+	//memcpy(&testG, &G, sizeof(struct gameState));
 	handPos = 0;
 	choice1 = 1;
 	choice2 = 2;
-	testG.hand[currentPlayer][handPos] = ambassador;	// Make card at handPos == ambassador
-	testG.hand[currentPlayer][choice1] = adventurer;	// Make card at choice1 == adventurer
-	testG.hand[currentPlayer][choice1+1] = adventurer;	// Make next two cards == adventurer
-	testG.hand[currentPlayer][choice1+2] = adventurer;
-	testG.hand[currentPlayer][choice1+3] = baron;
-	numCardsOld = numHandCards(&testG);
+	G.hand[currentPlayer][handPos] = ambassador;	// Make card at handPos == ambassador
+	G.hand[currentPlayer][choice1] = adventurer;	// Make card at choice1 == adventurer
+	G.hand[currentPlayer][choice1+1] = adventurer;	// Make next two cards == adventurer
+	G.hand[currentPlayer][choice1+2] = adventurer;
+	G.hand[currentPlayer][choice1+3] = baron;
+	numCardsOld = numHandCards(&G);
 
-	aTest = cardEffect(ambassador, choice1, choice2, choice3, &testG, handPos, &bonus);
+	aTest = cardEffect(ambassador, choice1, choice2, choice3, &G, handPos, &bonus);
 
-	numCardsNew = numHandCards(&testG);
+	numCardsNew = numHandCards(&G);
 
 	printf("num cards before function call:%d\n", numCardsOld);
 	printf("num cards after function call:%d - 3\n", numCardsOld);

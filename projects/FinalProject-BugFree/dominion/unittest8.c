@@ -44,7 +44,7 @@ int main() {
     int numCoinsNew = 0;
 	int testP = 0;
 	int testC = 0;
-	struct gameState G, testG;
+	struct gameState G;
 	
 	int k[10] = { adventurer, embargo, village, minion, mine, 
 				baron, cutpurse, tribute, smithy, council_room};
@@ -68,30 +68,30 @@ int main() {
 	printf("TEST 8: Bonus coins not updated correctly during cardEffect() in playCard() when playing Baron.\n");
 
 	// copy the game state to a test case
-	memcpy(&testG, &G, sizeof(struct gameState));
+	//memcpy(&testG, &G, sizeof(struct gameState));
 	handPos = 0;
 	choice1 = 1;
 	choice2 = 0;
 	choice3 = 0; 
 	card = baron;
 
-	currentPlayer = whoseTurn(&testG);
-	numCards = numHandCards(&testG);
+	currentPlayer = whoseTurn(&G);
+	numCards = numHandCards(&G);
 
-	testG.hand[currentPlayer][handPos] = baron;	// Make sure handPos card == baron
+	G.hand[currentPlayer][handPos] = baron;	// Make sure handPos card == baron
 
 	for(i = 1; i < numCards-1; i++)	// Change three cards in hand to estate.
-		testG.hand[currentPlayer][i] = estate;
-	testG.hand[currentPlayer][numCards-1] = duchy;	// Changed last card to duchy
+		G.hand[currentPlayer][i] = estate;
+	G.hand[currentPlayer][numCards-1] = duchy;	// Changed last card to duchy
 
-	testG.phase = 0;		// Make sure phase is > 0
-	testG.numActions = 2; 	// Make sure numActions > 0
+	G.phase = 0;		// Make sure phase is > 0
+	G.numActions = 2; 	// Make sure numActions > 0
 
-	testP = playCard(handPos, choice1, choice2, choice3, &testG);	// Run playCard
+	testP = playCard(handPos, choice1, choice2, choice3, &G);	// Run playCard
 
-	numCoinsNew = testG.coins;	// Store new numCoins
+	numCoinsNew = G.coins;	// Store new numCoins
 
-	testC = cardEffect(baron, choice1, choice2, choice3, &testG, handPos, &coin_bonus);
+	testC = cardEffect(baron, choice1, choice2, choice3, &G, handPos, &coin_bonus);
 	printf("expected num coins after estate discarded = 4\n");
 	printf("actual = %d\n", numCoinsNew);
 	printf("assert = %d\n\n", myAssert(4, numCoinsNew));
