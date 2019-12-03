@@ -45,8 +45,8 @@ int main(int argc, char *argv[])
 	//Call the function
 	cardEffect(mine, 1, silver, 0, &G, 0, 0);
 
-	printf("mine card should not be in playedCards array\n");
-	COMPARE(G.playedCards[0] != mine);
+	printf("copper card should not be in playedCards array\n");
+	COMPARE(G.playedCards[1] != copper);
 	
 	printf("----------------- Testing Finished: %s ----------------\n\n\n", TESTFUNCTION);
 }
