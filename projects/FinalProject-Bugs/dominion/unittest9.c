@@ -39,7 +39,7 @@ int main() {
 	int handPos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
 	int currentPlayer = 0, nextPlayer = 1;
     int numActionsOld = 0, numActionsNew = 0;
-	struct gameState G, testG;
+	struct gameState G;
 	
 	int k[10] = { adventurer, embargo, village, minion, mine, 
 				baron, cutpurse, tribute, smithy, council_room};
@@ -63,20 +63,20 @@ int main() {
 	printf("TEST 9: Tribute card incorrectly adds numActions in case of duplicate revealed treasures.\n");
 
 	// copy the game state to a test case
-	memcpy(&testG, &G, sizeof(struct gameState));
+	//memcpy(&testG, &G, sizeof(struct gameState));
 
 	// Make next player have no cards in deck and two cards in discard
-	testG.hand[currentPlayer][handPos] = tribute;	// Set card at handPos as tribute
-	testG.deckCount[nextPlayer] = 2;
-	testG.discardCount[nextPlayer] = 2;
-	testG.deck[nextPlayer][0] = copper;	// Deck has two copper cards only
-	testG.deck[nextPlayer][1] = copper;	
+	G.hand[currentPlayer][handPos] = tribute;	// Set card at handPos as tribute
+	G.deckCount[nextPlayer] = 2;
+	G.discardCount[nextPlayer] = 2;
+	G.deck[nextPlayer][0] = copper;	// Deck has two copper cards only
+	G.deck[nextPlayer][1] = copper;	
 
-	numActionsOld = testG.numActions;
+	numActionsOld = G.numActions;
 
-	cardEffect(tribute, choice1, choice2, choice3, &testG, handPos, &bonus);
+	cardEffect(tribute, choice1, choice2, choice3, &G, handPos, &bonus);
 
-	numActionsNew = testG.numActions;
+	numActionsNew = G.numActions;
 
 	printf("num actions before function call = %d\n", numActionsOld);
 	printf("expected num actions after function call = %d\n", numActionsOld);
